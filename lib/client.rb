@@ -80,4 +80,27 @@ class Client
     DB.exec("UPDATE clients SET stylist_id = #{stylist.id} WHERE id = #{@id};")
     @stylist_id = stylist.id
   end
+
+  def update(options)
+    first_name = options.fetch(:first_name, nil)
+    last_name  = options.fetch(:last_name, nil)
+    full_name  = options.fetch(:full_name, nil)
+    stylist    = options.fetch(:stylist, nil)
+
+    if stylist
+      DB.exec("UPDATE clients SET stylist_id = #{stylist.id} WHERE id = #{@id};")
+      @stylist_id = stylist.id
+    elsif first_name
+      DB.exec("UPDATE clients SET first_name = #{first_name} WHERE id = #{@id};")
+      @first_name = first_name
+    elsif last_name
+      DB.exec("UPDATE clients SET last_name = #{last_name} WHERE id = #{@id};")
+      @last_name = last_name
+    elsif full_name
+      name = full_name.split
+      @first_name = name.shift
+      @last_name = name.join(' ')
+      update(first_name: first_name, last_name: last_name)
+    end
+  end
 end

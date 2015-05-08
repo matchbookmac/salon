@@ -144,4 +144,39 @@ describe(Client) do
       expect(client.stylist_id).to(eq(stylist.id))
     end
   end
+
+  describe('#update') do
+    it('will update a client\'s first name') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      client.update(first_name: 'Mattie')
+      expect(client.first_name).to(eq('Mattie'))
+    end
+
+    it('will update a client\'s last name') do
+      client = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client.save
+      client.update(last_name: 'MacDonald')
+      expect(client.last_name).to(eq('MacDonald'))
+    end
+
+    it('will update a client\'s full name') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      client.update(full_name: 'Mattie Gregor')
+      expect(client.full_name).to(eq('Mattie Gregor'))
+    end
+
+    it('will update a client\'s stylist') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      stylist_1 = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist_1.save
+      stylist_1.add_clients([client])
+      stylist_2 = Stylist.new(id: nil, first_name: 'Bill', last_name: 'The Hairdresser')
+      stylist_2.save
+      client.update(stylist: stylist_2)
+      expect(client.stylist).to(eq(stylist_2))
+    end
+  end
 end
