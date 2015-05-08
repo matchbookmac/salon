@@ -34,6 +34,38 @@ class Client
     @id = result.first['id'].to_i
   end
 
+  def self.find(options)
+    first_name = options.fetch(:first_name, nil)
+    last_name  = options.fetch(:last_name, nil)
+    full_name  = options.fetch(:full_name, nil)
+    id         = options.fetch(:id, nil)
+
+    clients = []
+    if id
+      result = DB.exec("SELECT * FROM clients WHERE id = #{id};")
+      clients << Client.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'])
+    elsif first_name
+      results = DB.exec("SELECT * FROM clients WHERE first_name = '#{first_name}';")
+      results.each do |result|
+        clients << Client.find(id: result['id'].to_i).first
+      end
+    elsif last_name
+      results = DB.exec("SELECT * FROM clients WHERE last_name = '#{last_name}';")
+      results.each do |result|
+        clients << Client.find(id: result['id'].to_i).first
+      end
+    elsif full_name
+      name = full_name.split
+      first_name = name.shift
+      last_name = name.join(' ')
+      results = DB.exec("SELECT * FROM clients WHERE first_name = '#{first_name}' AND last_name = '#{last_name}';")
+      results.each do |result|
+        clients << Client.find(id: result['id'].to_i).first
+      end
+    end
+    clients
+  end
+
   # def stylist
   #   result = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
   #   @stylist_id = result.first['stylist_id'].to_i

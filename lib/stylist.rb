@@ -42,8 +42,7 @@ class Stylist
     stylists = []
     if id
       result = DB.exec("SELECT * FROM stylists WHERE id = #{id};")
-      stylist = Stylist.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'])
-      stylists << stylist
+      stylists << Stylist.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'])
     elsif first_name
       results = DB.exec("SELECT * FROM stylists WHERE first_name = '#{first_name}';")
       results.each do |result|

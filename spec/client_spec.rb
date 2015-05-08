@@ -34,6 +34,12 @@ describe(Client) do
       client_2 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
       expect(client_1).to(eq(client_2))
     end
+
+    it('will return false if the first and last name and id if two clients are not the same') do
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      expect(client_1).not_to(eq(client_2))
+    end
   end
 
   describe('#save') do
@@ -49,6 +55,48 @@ describe(Client) do
       client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
       client.save
       expect(client.id).to(be_an_instance_of(Fixnum))
+    end
+  end
+
+  describe('.find') do
+    it('will find a client by id') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      expect(Client.find(id: client.id)).to(eq([client]))
+    end
+
+    it('will find a client by first name') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      expect(Client.find(first_name: client.first_name)).to(eq([client]))
+    end
+
+    it('will find a multiple stylists with the same first name') do
+      client_1 = Client.new(id: nil, first_name: 'Mattie', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      expect(Client.find(first_name: client_1.first_name)).to(eq([client_1, client_2]))
+    end
+
+    it('will find a client by last name') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      expect(Client.find(last_name: client.last_name)).to(eq([client]))
+    end
+
+    it('will find a multiple stylists with the same last name') do
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'MacDonald', stylist_id: nil)
+      client_2.save
+      expect(Client.find(last_name: client_1.last_name)).to(eq([client_1, client_2]))
+    end
+
+    it('will find a client by full_name name') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      expect(Client.find(full_name: client.full_name)).to(eq([client]))
     end
   end
 
