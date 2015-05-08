@@ -67,7 +67,7 @@ class Stylist
 
   def add_clients(clients)
     clients.each do |client|
-      DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE id = #{client.id};")
+      client.add_stylist(self)
     end
   end
 end
