@@ -4,6 +4,13 @@
   <% else %>
     <p class="text-center lead">Here is a list of available stylists:</p>
     <ul>
+      <% @stylists.each do |stylist| %>
+        <li>
+          <a href="/stylists/<%= stylist.id %>">
+            <%= stylist.full_name %>
+          </a>
+        </li>
+      <% end %>
     </ul>
   <% end %>
 </div>
