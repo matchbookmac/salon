@@ -21,8 +21,12 @@ class Client
     clients
   end
 
-  # def save
-  #   result = DB.exec("INSERT INTO clients (first_name, last_name, stylist_id) VALUES ('#{@first_name}', '#{@last_name}', #{@stylist_id}) RETURNING id;")
-  #   @id = result.first['id'].to_i
-  # end
+  def ==(other_client)
+    first_name.==(other_client.first_name) && last_name.==(other_client.last_name) && id.==(other_client.id)
+  end
+
+  def save
+    result = DB.exec("INSERT INTO clients (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
+    @id = result.first['id'].to_i
+  end
 end
