@@ -67,7 +67,7 @@ class Stylist
 
   def add_clients(clients)
     clients.each do |client|
-      client.add_stylist(self)
+      client.update(stylist: self)
     end
   end
 end

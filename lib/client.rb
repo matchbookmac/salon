@@ -76,11 +76,6 @@ class Client
     end
   end
 
-  def add_stylist(stylist)
-    DB.exec("UPDATE clients SET stylist_id = #{stylist.id} WHERE id = #{@id};")
-    @stylist_id = stylist.id
-  end
-
   def update(options)
     first_name = options.fetch(:first_name, nil)
     last_name  = options.fetch(:last_name, nil)

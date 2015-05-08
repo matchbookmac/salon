@@ -117,17 +117,6 @@ describe(Client) do
     end
   end
 
-  describe('#add_stylist') do
-    it('will add a stylist for a client') do
-      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-      stylist.save
-      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
-      client.save
-      client.add_stylist(stylist)
-      expect(client.stylist).to(eq(stylist))
-    end
-  end
-
   describe('#stylist_id') do
     it('will return nil if there is no stylist_id for a client') do
       client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
