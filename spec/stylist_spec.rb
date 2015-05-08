@@ -155,4 +155,15 @@ describe(Stylist) do
       expect(client_2.stylist).to(eq(nil))
     end
   end
+
+  describe('.clear') do
+    it('will clear all entries in the database') do
+      stylist_1 = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist_1.save
+      stylist_2 = Stylist.new(id: nil, first_name: 'Bill', last_name: 'The Barber')
+      stylist_2.save
+      Stylist.clear
+      expect(Stylist.all).to(eq([]))
+    end
+  end
 end

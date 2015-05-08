@@ -1,0 +1,70 @@
+.login-wrapper > p {
+  margin-bottom: 30px;
+}
+
+.login-wrapper a {
+  display: inline-block;
+  width: 100%;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.move-down {
+  margin-top: 60px;
+}
+
+a.back-link {
+  display: inline-block;
+  position: absolute;
+  top: 500px;
+}
+
+a.stretch,
+button.stretch {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.top-left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.btn-primary.outline {
+    border: 2px solid #0099cc;
+    color: #0099cc;
+    background: white;
+    margin-top: 20px;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+.books-container ul li {
+  font-size: 20px;
+  text-align: center;
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+
+input.form-control.half-width {
+  width: 50%;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}

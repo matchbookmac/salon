@@ -94,4 +94,8 @@ class Stylist
     DB.exec("DELETE FROM stylists WHERE id = #{@id};")
     DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id}")
   end
+
+  def self.clear
+    DB.exec("DELETE FROM stylists;")
+  end
 end
