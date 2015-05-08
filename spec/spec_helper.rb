@@ -3,8 +3,6 @@ require('pg')
 require('rspec')
 require('capybara/rspec')
 require('sinatra')
-# require('client')
-# require('stylist')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
