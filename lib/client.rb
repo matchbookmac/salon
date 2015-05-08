@@ -75,4 +75,8 @@ class Client
       stylist = Stylist.find(id: @stylist_id).first
     end
   end
+
+  def add_stylist(stylist)
+    stylist.add_clients([self])
+  end
 end
