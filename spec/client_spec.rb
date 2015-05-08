@@ -168,4 +168,13 @@ describe(Client) do
       expect(client.stylist).to(eq(stylist_2))
     end
   end
+
+  describe('#delete') do
+    it('will delete a client from the database') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      client.delete
+      expect(Client.all).to(eq([]))
+    end
+  end
 end

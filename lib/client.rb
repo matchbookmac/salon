@@ -98,4 +98,8 @@ class Client
       update(first_name: first_name, last_name: last_name)
     end
   end
+
+  def delete
+    DB.exec("DELETE FROM clients WHERE id = #{@id};")
+  end
 end
