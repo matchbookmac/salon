@@ -116,28 +116,43 @@ describe(Stylist) do
       expect(client_1.stylist).to(eq(stylist))
       expect(client_2.stylist).to(eq(stylist))
     end
+  end
 
-    describe('#update') do
-      it('will update a stylist\'s first name') do
-        stylist = Client.new(id: nil, first_name: 'Joe', last_name: 'The Barber', stylist_id: nil)
-        stylist.save
-        stylist.update(first_name: 'Bill')
-        expect(stylist.first_name).to(eq('Bill'))
-      end
+  describe('#update') do
+    it('will update a stylist\'s first name') do
+      stylist = Client.new(id: nil, first_name: 'Joe', last_name: 'The Barber', stylist_id: nil)
+      stylist.save
+      stylist.update(first_name: 'Bill')
+      expect(stylist.first_name).to(eq('Bill'))
+    end
 
-      it('will update a stylist\'s last name') do
-        stylist = Client.new(id: nil, first_name: 'Bill', last_name: 'The Barber', stylist_id: nil)
-        stylist.save
-        stylist.update(last_name: 'The Hairdresser')
-        expect(stylist.last_name).to(eq('The Hairdresser'))
-      end
+    it('will update a stylist\'s last name') do
+      stylist = Client.new(id: nil, first_name: 'Bill', last_name: 'The Barber', stylist_id: nil)
+      stylist.save
+      stylist.update(last_name: 'The Hairdresser')
+      expect(stylist.last_name).to(eq('The Hairdresser'))
+    end
 
-      it('will update a stylist\'s full name') do
-        stylist = Client.new(id: nil, first_name: 'Joe', last_name: 'The Barber', stylist_id: nil)
-        stylist.save
-        stylist.update(full_name: 'Bill The Hairdresser')
-        expect(stylist.full_name).to(eq('Bill The Hairdresser'))
-      end
+    it('will update a stylist\'s full name') do
+      stylist = Client.new(id: nil, first_name: 'Joe', last_name: 'The Barber', stylist_id: nil)
+      stylist.save
+      stylist.update(full_name: 'Bill The Hairdresser')
+      expect(stylist.full_name).to(eq('Bill The Hairdresser'))
+    end
+  end
+
+  describe('#delete') do
+    it('will delete a stylist and update their clients\' stylist id') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      stylist.add_clients([client_1, client_2])
+      stylist.delete
+      expect(client_1.stylist).to(eq(nil))
+      expect(client_2.stylist).to(eq(nil))
     end
   end
 end

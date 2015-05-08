@@ -89,4 +89,9 @@ class Stylist
       update(first_name: first_name, last_name: last_name)
     end
   end
+
+  def delete
+    DB.exec("DELETE FROM stylists WHERE id = #{@id};")
+    DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id}")
+  end
 end
