@@ -102,4 +102,8 @@ class Client
   def delete
     DB.exec("DELETE FROM clients WHERE id = #{@id};")
   end
+
+  def self.clear
+    DB.exec("DELETE FROM clients;")
+  end
 end

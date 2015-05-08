@@ -177,4 +177,15 @@ describe(Client) do
       expect(Client.all).to(eq([]))
     end
   end
+
+  describe('.clear') do
+    it('will clear all entries in the database') do
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'MacDonald', stylist_id: nil)
+      client_2.save
+      Client.clear
+      expect(Client.all).to(eq([]))
+    end
+  end
 end
