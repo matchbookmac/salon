@@ -53,31 +53,48 @@ describe(Stylist) do
     end
   end
 
-  # describe('.find') do
-  #   it('will find a stylist by first name') do
-  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-  #     stylist.save
-  #     expect(Stylist.find(first_name: stylist.first_name).to(eq(stylist))
-  #   end
-  #
-  #   it('will find a stylist by last name') do
-  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-  #     stylist.save
-  #     expect(Stylist.find(last_name: stylist.last_name).to(eq(stylist))
-  #   end
-  #
-  #   it('will find a stylist by full_name name') do
-  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-  #     stylist.save
-  #     expect(Stylist.find(full_name: stylist.full_name).to(eq(stylist))
-  #   end
-  #
-  #   it('will find a stylist by id name') do
-  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-  #     stylist.save
-  #     expect(Stylist.find(id: stylist.id).to(eq(stylist))
-  #   end
-  # end
+  describe('.find') do
+    it('will find a stylist by id') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      expect(Stylist.find(id: stylist.id)).to(eq([stylist]))
+    end
+
+    it('will find a stylist by first name') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      expect(Stylist.find(first_name: stylist.first_name)).to(eq([stylist]))
+    end
+
+    it('will find a multiple stylists with the same first name') do
+      stylist_1 = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist_1.save
+      stylist_2 = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Hairdresser')
+      stylist_2.save
+      expect(Stylist.find(first_name: stylist_1.first_name)).to(eq([stylist_1, stylist_2]))
+    end
+
+    it('will find a stylist by last name') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      expect(Stylist.find(last_name: stylist.last_name)).to(eq([stylist]))
+    end
+
+    it('will find a multiple stylists with the same last name') do
+      stylist_1 = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist_1.save
+      stylist_2 = Stylist.new(id: nil, first_name: 'Bill', last_name: 'The Barber')
+      stylist_2.save
+      expect(Stylist.find(last_name: stylist_1.last_name)).to(eq([stylist_1, stylist_2]))
+    end
+
+    it('will find a stylist by full_name name') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      expect(Stylist.find(full_name: stylist.full_name)).to(eq([stylist]))
+    end
+  end
+
   # describe('#add_clients') do
   #   it('will add a client to a stylist') do
   #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
