@@ -1,0 +1,19 @@
+<h1 class="page-header text-center">Clients</h1>
+<div class="col-sm-6 col-sm-offset-3">
+  <% if @clients.empty? %>
+    <p class="text-center lead">Sorry, there are no clients at this time.</p>
+    <a href="/clients/add" class="btn btn-primary outline stretch" role="button">Add a Client</a>
+  <% else %>
+    <p class="text-center lead">Here is a list of available clients:</p>
+    <ul>
+      <% @clients.each do |client| %>
+        <li>
+          <a href="/clients/<%= client.id %>">
+            <%= client.full_name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  <a href="/clients/add" class="btn btn-primary outline stretch" role="button">Add Another Client</a>
+  <% end %>
+</div>

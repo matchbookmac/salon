@@ -2,10 +2,10 @@ require('pg')
 
 DB = PG.connect(dbname: 'hair_salon_test')
 
-require('./app')
-
 require('rspec')
 require('capybara/rspec')
+require('./app')
+
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 

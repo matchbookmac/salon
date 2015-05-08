@@ -1,0 +1,10 @@
+<h1 class="page-header text-center"><%= @client.full_name %></h1>
+<div class="col-sm-6 col-sm-offset-3">
+  <% if @client.stylist == nil %>
+    <p class="text-center lead">This client does not have a stylist at this time.</p>
+  <% else %>
+    <p class="text-center lead"><%= @client.stylist.full_name %> styles <%= @client.first_name %>'s hair'</p>
+  <% end %>
+</div>
+
+<a href="/clients" class="back-link">< Back</a>
