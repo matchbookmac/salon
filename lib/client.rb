@@ -8,6 +8,10 @@ class Client
     @stylist_id = attributes[:stylist_id]
   end
 
+  def full_name
+    "#{@first_name} #{@last_name}"
+  end
+
   def self.all
     clients = []
     returned_clients = DB.exec("SELECT * FROM clients;")
@@ -29,4 +33,13 @@ class Client
     result = DB.exec("INSERT INTO clients (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
     @id = result.first['id'].to_i
   end
+
+  # def stylist
+  #   result = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
+  #   @stylist_id = result.first['stylist_id'].to_i
+  #   if @stylist_id.==(0)
+  #     @stylist = nil
+  #   end
+  #   stylist = Stylist.find(id: @stylist_id)
+  # end
 end

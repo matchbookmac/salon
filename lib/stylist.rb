@@ -7,6 +7,10 @@ class Stylist
     @last_name = attributes[:last_name]
   end
 
+  def full_name
+    "#{@first_name} #{@last_name}"
+  end
+
   def self.all
     stylists = []
     returned_stylists = DB.exec("SELECT * FROM stylists;")
@@ -28,4 +32,10 @@ class Stylist
     result = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
     @id = result.first['id'].to_i
   end
+
+  # def add_clients(clients)
+  #   clients.each do |client|
+  #     DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE id = #{client.id};")
+  #   end
+  # end
 end

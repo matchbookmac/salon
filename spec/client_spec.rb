@@ -15,6 +15,13 @@ describe(Client) do
     end
   end
 
+  describe('#full_name') do
+    it('will return the full name of a stylist') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      expect(client.full_name).to(eq('Ian MacDonald'))
+    end
+  end
+
   describe('.all') do
     it('will return an empty array when there are no clients') do
       expect(Client.all).to(eq([]))
@@ -22,7 +29,7 @@ describe(Client) do
   end
 
   describe('#==') do
-    it('will return true if the first and last name and id of two clients are the same') do
+    it('will return true if the first and last name and id if two clients are the same') do
       client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
       client_2 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
       expect(client_1).to(eq(client_2))
@@ -45,8 +52,37 @@ describe(Client) do
     end
   end
 
+  # describe('#stylist') do
+  #   it('will return nil if there is no stylist for a client') do
+  #     client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+  #     client.save
+  #     expect(client.stylist).to(eq(nil))
+  #   end
 
-  describe('#stylist_id') do
+    # it('will return the stylist for a client') do
+    #   stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+    #   stylist.save
+    #   client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+    #   client.save
+    #   stylist.add_client(client)
+    #   expect
+    # end
+  # end
 
-  end
+  # describe('#stylist_id') do
+  #   it('will return nil if there is no stylist_id for a client') do
+  #     client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+  #     client.save
+  #     expect(client.stylist_id).to(eq(nil))
+  #   end
+
+    # it('will return the stylist_id for a client') do
+    #   stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+    #   stylist.save
+    #   client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+    #   client.save
+    #   stylist.add_client(client)
+    #   expect(client.stylist_id).to(eq(stylist.id))
+    # end
+  # end
 end

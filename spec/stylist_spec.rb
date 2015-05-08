@@ -16,6 +16,13 @@ describe(Stylist) do
     end
   end
 
+  describe('#full_name') do
+    it('will return the full name of a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      expect(stylist.full_name).to(eq('Joe The Barber'))
+    end
+  end
+
   describe('.all') do
     it('will return an empty array when there are no stylists') do
       expect(Stylist.all).to(eq([]))
@@ -46,4 +53,39 @@ describe(Stylist) do
     end
   end
 
+  # describe('.find') do
+  #   it('will find a stylist by first name') do
+  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+  #     stylist.save
+  #     expect(Stylist.find(first_name: stylist.first_name).to(eq(stylist))
+  #   end
+  #
+  #   it('will find a stylist by last name') do
+  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+  #     stylist.save
+  #     expect(Stylist.find(last_name: stylist.last_name).to(eq(stylist))
+  #   end
+  #
+  #   it('will find a stylist by full_name name') do
+  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+  #     stylist.save
+  #     expect(Stylist.find(full_name: stylist.full_name).to(eq(stylist))
+  #   end
+  #
+  #   it('will find a stylist by id name') do
+  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+  #     stylist.save
+  #     expect(Stylist.find(id: stylist.id).to(eq(stylist))
+  #   end
+  # end
+  # describe('#add_clients') do
+  #   it('will add a client to a stylist') do
+  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+  #     stylist.save
+  #     client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+  #     client.save
+  #     stylist.add_clients([client])
+  #     expect(client.stylist).to(eq(stylist))
+  #   end
+  # end
 end
