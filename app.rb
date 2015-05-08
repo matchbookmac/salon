@@ -13,3 +13,14 @@ end
 get('/') do
   erb(:index)
 end
+
+get('/reset') do
+  Client.clear
+  Stylist.clear
+  erb(:index)
+end
+
+get('/stylists') do
+  @stylists = Stylists.all
+  erb(:stylists)
+end
