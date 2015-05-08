@@ -95,14 +95,27 @@ describe(Stylist) do
     end
   end
 
-  # describe('#add_clients') do
-  #   it('will add a client to a stylist') do
-  #     stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-  #     stylist.save
-  #     client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
-  #     client.save
-  #     stylist.add_clients([client])
-  #     expect(client.stylist).to(eq(stylist))
-  #   end
-  # end
+  describe('#add_clients') do
+    it('will add a client to a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      stylist.add_clients([client])
+      expect(client.stylist).to(eq(stylist))
+    end
+
+    it('will add a multiple clients to a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      stylist.add_clients([client_1, client_2])
+      expect(client_1.stylist).to(eq(stylist))
+      expect(client_2.stylist).to(eq(stylist))
+    end
+
+  end
 end

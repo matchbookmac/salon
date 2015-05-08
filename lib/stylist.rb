@@ -65,9 +65,9 @@ class Stylist
     stylists
   end
 
-  # def add_clients(clients)
-  #   clients.each do |client|
-  #     DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE id = #{client.id};")
-  #   end
-  # end
+  def add_clients(clients)
+    clients.each do |client|
+      DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE id = #{client.id};")
+    end
+  end
 end
