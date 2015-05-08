@@ -100,22 +100,22 @@ describe(Client) do
     end
   end
 
-  # describe('#stylist') do
-  #   it('will return nil if there is no stylist for a client') do
-  #     client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
-  #     client.save
-  #     expect(client.stylist).to(eq(nil))
-  #   end
+  describe('#stylist') do
+    it('will return nil if there is no stylist for a client') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      expect(client.stylist).to(eq(nil))
+    end
 
-    # it('will return the stylist for a client') do
-    #   stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
-    #   stylist.save
-    #   client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
-    #   client.save
-    #   stylist.add_client(client)
-    #   expect
-    # end
-  # end
+    it('will return the stylist for a client') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      stylist.add_clients([client])
+      expect(client.stylist).to(eq(stylist))
+    end
+  end
 
   # describe('#stylist_id') do
   #   it('will return nil if there is no stylist_id for a client') do

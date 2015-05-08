@@ -66,12 +66,13 @@ class Client
     clients
   end
 
-  # def stylist
-  #   result = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
-  #   @stylist_id = result.first['stylist_id'].to_i
-  #   if @stylist_id.==(0)
-  #     @stylist = nil
-  #   end
-  #   stylist = Stylist.find(id: @stylist_id)
-  # end
+  def stylist
+    result = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
+    @stylist_id = result.first['stylist_id'].to_i
+    if @stylist_id.==(0)
+      stylist = nil
+    else
+      stylist = Stylist.find(id: @stylist_id).first
+    end
+  end
 end
