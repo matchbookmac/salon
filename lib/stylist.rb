@@ -20,4 +20,12 @@ class Stylist
     stylists
   end
 
+  def ==(other_stylist)
+    first_name.==(other_stylist.first_name) && last_name.==(other_stylist.last_name) && id.==(other_stylist.id)
+  end
+
+  def save
+    result = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
+    @id = result.first['id'].to_i
+  end
 end
