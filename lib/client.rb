@@ -91,10 +91,10 @@ class Client
       DB.exec("UPDATE clients SET stylist_id = #{stylist.id} WHERE id = #{@id};")
       @stylist_id = stylist.id
     elsif first_name
-      DB.exec("UPDATE clients SET first_name = #{first_name} WHERE id = #{@id};")
+      DB.exec("UPDATE clients SET first_name = '#{first_name}' WHERE id = #{@id};")
       @first_name = first_name
     elsif last_name
-      DB.exec("UPDATE clients SET last_name = #{last_name} WHERE id = #{@id};")
+      DB.exec("UPDATE clients SET last_name = '#{last_name}' WHERE id = #{@id};")
       @last_name = last_name
     elsif full_name
       name = full_name.split
