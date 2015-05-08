@@ -141,6 +141,19 @@ describe(Stylist) do
     end
   end
 
+  describe('#clients') do
+    it('will return an array of clients for a specific stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      stylist.add_clients([client_1, client_2])
+      expect(stylist.clients).to(eq([client_1, client_2]))
+    end
+  end
+
   describe('#delete') do
     it('will delete a stylist and update their clients\' stylist id') do
       stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')

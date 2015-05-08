@@ -90,6 +90,15 @@ class Stylist
     end
   end
 
+  def clients
+    clients = []
+    results = DB.exec("SELECT * FROM clients WHERE stylist_id = #{@id};")
+    results.each do |client|
+      clients << Client.new(id: client['id'].to_i, first_name: client['first_name'], last_name: client['last_name'])
+    end
+    clients
+  end
+
   def delete
     DB.exec("DELETE FROM stylists WHERE id = #{@id};")
     DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id}")
