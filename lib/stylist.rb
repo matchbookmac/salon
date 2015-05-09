@@ -73,7 +73,7 @@ class Stylist
 
   def remove_clients(clients)
     clients.each do |client|
-      DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id} AND id = #{client.id}")      
+      DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id} AND id = #{client.id}")
     end
   end
 
@@ -100,7 +100,7 @@ class Stylist
     clients = []
     results = DB.exec("SELECT * FROM clients WHERE stylist_id = #{@id};")
     results.each do |client|
-      clients << Client.new(id: client['id'].to_i, first_name: client['first_name'], last_name: client['last_name'])
+      clients << Client.new(id: client['id'].to_i, first_name: client['first_name'], last_name: client['last_name'], stylist_id: client['stylist_id'].to_i)
     end
     clients
   end

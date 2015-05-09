@@ -12,7 +12,7 @@
             <% @stylist.clients.each do |client| %>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="client_id" name="client_id[]" value="<%= client.id %>">
+                  <input type="checkbox" id="<%= client.id %>" name="client_id[]" value="<%= client.id %>">
                   <%= client.full_name %></input>
                 </label>
               </div>
@@ -25,7 +25,7 @@
   </div>
   <div class="col-sm-3 move-down">
     <% if Client.available.empty? %>
-      <p class="text-center lead">Sorry, there are no clients for available at this time.</p>
+      <p class="text-center lead">Sorry, there are no clients available at this time.</p>
     <% else %>
       <p class="text-center lead">Available Clients:</p>
       <form action="/stylists/<%= @stylist.id %>/clients/add" method="post">
