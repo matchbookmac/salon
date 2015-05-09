@@ -43,7 +43,7 @@ class Client
     clients = []
     if id
       result = DB.exec("SELECT * FROM clients WHERE id = #{id};")
-      clients << Client.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'])
+      clients << Client.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'], stylist_id: result.first['stylist_id'].to_i)
     elsif first_name
       results = DB.exec("SELECT * FROM clients WHERE first_name = '#{first_name}';")
       results.each do |result|

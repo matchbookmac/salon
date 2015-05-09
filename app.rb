@@ -17,7 +17,7 @@ end
 get('/reset') do
   Client.clear
   Stylist.clear
-  erb(:index)
+  redirect to('/')
 end
 
 get('/stylists') do
@@ -55,12 +55,13 @@ end
 post('/clients/add') do
   first_name = params['first_name']
   last_name = params['last_name']
-  stylist = params['stylist']
-  if stylist == ""
-    stylist = nil
-  end
-  client = Client.new(id: nil, first_name: first_name, last_name: last_name, stylist_id: stylist)
+  stylist_id = params['stylist_id'].to_i
+  client = Client.new(id: nil, first_name: first_name, last_name: last_name, stylist_id: nil)
   client.save
+  unless stylist_id == 0
+    stylist = Stylist.find(id: stylist_id).first
+    client.update(stylist: stylist)
+  end
   redirect to("/clients/#{client.id}")
 end
 

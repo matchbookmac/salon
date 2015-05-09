@@ -67,7 +67,7 @@ describe('the hair salon path', {:type => :feature}) do
     it('will navigate to clients, and add a new client without stylist') do
       visit('/clients')
       expect(page).to have_content('Sorry, there are no clients at this time.')
-      click_on('Add a client')
+      click_on('Add a Client')
       fill_in('first_name', with: 'Ian')
       fill_in('last_name', with: 'MacDonald')
       click_on('Add')
@@ -80,10 +80,10 @@ describe('the hair salon path', {:type => :feature}) do
       stylist.save
       visit('/clients')
       expect(page).to have_content('Sorry, there are no clients at this time.')
-      click_on('Add a client')
+      click_on('Add a Client')
       fill_in('first_name', with: 'Ian')
       fill_in('last_name', with: 'MacDonald')
-      find('#stylist').find(:xpath, 'option[1]').select_option
+      find('#stylist_id').find(:xpath, 'option[2]').select_option
       click_on('Add')
       expect(page).to have_content('Ian MacDonald')
       expect(page).to have_content('Joe The Barber styles Ian\'s hair')
