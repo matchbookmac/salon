@@ -118,6 +118,30 @@ describe(Stylist) do
     end
   end
 
+  describe('#remove_clients') do
+    it('will remove a client from a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      stylist.add_clients([client])
+      stylist.remove_clients([client])
+      expect(stylist.clients).to(eq([]))
+    end
+
+    it('will remove multiple clients from a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      stylist.add_clients([client_1, client_2])
+      stylist.remove_clients([client_1, client_2])
+      expect(stylist.clients).to(eq([]))
+    end
+  end
+
   describe('#update') do
     it('will update a stylist\'s first name') do
       stylist = Client.new(id: nil, first_name: 'Joe', last_name: 'The Barber', stylist_id: nil)

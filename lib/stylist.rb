@@ -71,6 +71,12 @@ class Stylist
     end
   end
 
+  def remove_clients(clients)
+    clients.each do |client|
+      DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id}")      
+    end
+  end
+
   def update(options)
     first_name = options.fetch(:first_name, nil)
     last_name  = options.fetch(:last_name, nil)
