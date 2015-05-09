@@ -73,7 +73,7 @@ class Stylist
 
   def remove_clients(clients)
     clients.each do |client|
-      DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id}")      
+      DB.exec("UPDATE clients SET stylist_id = null WHERE stylist_id = #{id} AND id = #{client.id}")      
     end
   end
 
