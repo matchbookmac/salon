@@ -45,6 +45,16 @@ describe('the hair salon path', {:type => :feature}) do
     end
   end
 
+  describe('delete stylist') do
+    it('will delete a stylist') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      visit("/stylists/#{stylist.id}")
+      click_on('Delete This Stylist')
+      expect(page).to have_content('Sorry, there are no stylists at this time.')
+    end
+  end
+
   describe('clients') do
     it('will navigate to clients and show no clients if there are none and navigate home') do
       visit('/clients')

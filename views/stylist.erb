@@ -12,6 +12,13 @@
       <% end %>
     </ul>
   <% end %>
+  <form action="/stylists/<%= @stylist.id %>" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger stretch">Delete This Stylist</button>
+    </div>
+  </form>
+
 </div>
 
 <a href="/stylists" class="back-link">< Back</a>
