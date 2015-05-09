@@ -35,7 +35,7 @@
             <% Client.available.each do |client| %>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="client_id" name="client_id[]" value="<%= client.id %>">
+                  <input type="checkbox" id="<%= client.id %>" name="client_id[]" value="<%= client.id %>">
                   <%= client.full_name %></input>
                 </label>
               </div>
