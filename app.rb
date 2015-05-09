@@ -79,3 +79,13 @@ get('/clients/:id') do
   @client = Client.find(id: params['id'].to_i).first
   erb(:client)
 end
+
+patch('/clients/:id') do
+
+end
+
+delete('/clients/:id') do
+  client = Client.find(id: params['id'].to_i).first
+  client.delete
+  redirect to('/clients')
+end

@@ -99,4 +99,14 @@ describe('the hair salon path', {:type => :feature}) do
       expect(page).to have_content('Joe The Barber styles Ian\'s hair')
     end
   end
+
+  describe('delete client') do
+    it('will delete a client') do
+      client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client.save
+      visit("/clients/#{client.id}")
+      click_on('Delete This Client')
+      expect(page).to have_content('Sorry, there are no clients at this time.')
+    end
+  end
 end

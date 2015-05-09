@@ -5,6 +5,13 @@
   <% else %>
     <p class="text-center lead">This client does not have a stylist at this time.</p>
   <% end %>
+  <form action="/clients/<%= @client.id %>" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger stretch">Delete This Client</button>
+    </div>
+  </form>
+
 </div>
 
 <a href="/clients" class="back-link">< Back</a>
