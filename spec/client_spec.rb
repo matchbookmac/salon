@@ -181,7 +181,11 @@ describe(Client) do
       expect(Client.available).to(eq([]))
     end
     it('will return an array of clients that are available') do
-
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'MacDonald', stylist_id: nil)
+      client_2.save
+      expect(Client.available).to(eq([client_1, client_2]))
     end
   end
 

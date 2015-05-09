@@ -101,9 +101,12 @@ class Client
 
   def self.available
     clients = []
-    results = DB.exec("SELECT * FROM clients WHERE stylist_id = NULL;")
+    results = DB.exec("SELECT * FROM clients;")
     results.each do |client|
-      clients << Client.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'], stylist_id: result.first['stylist_id'].to_i)
+binding.pry
+      if client['stylist_id'] == nil
+        clients << Client.new(id: client['id'].to_i, first_name: client['first_name'], last_name: client['last_name'], stylist_id: client['stylist_id'].to_i)
+      end
     end
     clients
   end
