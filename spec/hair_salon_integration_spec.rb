@@ -45,6 +45,24 @@ describe('the hair salon path', {:type => :feature}) do
     end
   end
 
+  describe('add clients to a stylist') do
+    it('will navigate to stylists, and add new clients') do
+      stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')
+      stylist.save
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'Gregor', stylist_id: nil)
+      client_2.save
+      visit("/stylists/#{stylist.id}")
+      click_on('Add a Stylist')
+      fill_in('first_name', with: 'Joe')
+      fill_in('last_name', with: 'The Barber')
+      click_on('Add')
+      expect(page).to have_content('Joe The Barber')
+      expect(page).to have_content('Sorry, there are no clients for this stylist at this time.')
+    end
+  end
+
   describe('delete stylist') do
     it('will delete a stylist') do
       stylist = Stylist.new(id: nil, first_name: 'Joe', last_name: 'The Barber')

@@ -43,7 +43,16 @@ get('/stylists/:id') do
 end
 
 patch('/stylists/:id') do
-
+  stylist = Stylist.find(id: params['id'].to_i).first
+  client_ids = params['client_id']
+  clients = []
+  client_ids.each do |id|
+    clients << Client.find(id: id.to_i).first
+  end
+  binding.pry
+  stylist.add_clients(clients)
+binding.pry  
+  redirect to("/stylists/#{stylist.id}")
 end
 
 delete('/stylists/:id') do
@@ -78,10 +87,6 @@ end
 get('/clients/:id') do
   @client = Client.find(id: params['id'].to_i).first
   erb(:client)
-end
-
-patch('/clients/:id') do
-
 end
 
 delete('/clients/:id') do

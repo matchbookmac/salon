@@ -1,24 +1,46 @@
 <h1 class="page-header text-center"><%= @stylist.full_name %></h1>
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-8 col-sm-offset-2">
   <% if @stylist.clients.empty? %>
     <p class="text-center lead">Sorry, there are no clients for this stylist at this time.</p>
   <% else %>
-    <p class="text-center lead"><%= @stylist.first_name %>'s clients:</p>
-    <ul>
-      <% @stylist.clients.each do |client| %>
-        <li>
-          <%= client.full_name %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-  <form action="/stylists/<%= @stylist.id %>" method="post">
-    <div class="form-group">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-danger stretch">Delete This Stylist</button>
+    <div class="col-sm-3 col-sm-offset-3 move-down">
+      <p class="text-center lead"><%= @stylist.first_name %>'s clients:</p>
+      <ul>
+        <% @stylist.clients.each do |client| %>
+          <li>
+            <%= client.full_name %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-  </form>
-
+  <% end %>
+  <div class="col-sm-3 move-down">
+    <p class="text-center lead">Available Clients:</p>
+    <form action="/stylists/<%= @stylist.id %>" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="patch">
+        <ul>
+          <% Client.available.each do |client| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="client_id" name="client_id[]" value="<%= client.id %>">
+                <%= client.full_name %></input>
+              </label>
+            </div>
+          <% end %>
+        </ul>
+        <button type="submit" class="btn btn-primary stretch">Add</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-8 col-sm-offset-2 move-down">
+    <form action="/stylists/<%= @stylist.id %>" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn btn-danger stretch">Delete This Stylist</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <a href="/stylists" class="back-link">< Back</a>

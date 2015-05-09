@@ -103,7 +103,6 @@ class Client
     clients = []
     results = DB.exec("SELECT * FROM clients;")
     results.each do |client|
-binding.pry
       if client['stylist_id'] == nil
         clients << Client.new(id: client['id'].to_i, first_name: client['first_name'], last_name: client['last_name'], stylist_id: client['stylist_id'].to_i)
       end
