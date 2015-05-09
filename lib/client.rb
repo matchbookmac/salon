@@ -99,6 +99,15 @@ class Client
     end
   end
 
+  def self.available
+    clients = []
+    results = DB.exec("SELECT * FROM clients WHERE stylist_id = NULL;")
+    results.each do |client|
+      clients << Client.new(id: result.first['id'].to_i, first_name: result.first['first_name'], last_name: result.first['last_name'], stylist_id: result.first['stylist_id'].to_i)
+    end
+    clients
+  end
+
   def delete
     DB.exec("DELETE FROM clients WHERE id = #{@id};")
   end

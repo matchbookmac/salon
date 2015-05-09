@@ -169,6 +169,22 @@ describe(Client) do
     end
   end
 
+  describe('.available') do
+    it('will return an empty array when no are available') do
+      client_1 = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
+      client_1.save
+      client_2 = Client.new(id: nil, first_name: 'Mattie', last_name: 'MacDonald', stylist_id: nil)
+      client_2.save
+      stylist = Stylist.new(id: nil, first_name: 'Bill', last_name: 'The Hairdresser')
+      stylist.save
+      stylist.add_clients([client_1, client_2])
+      expect(Client.available).to(eq([]))
+    end
+    it('will return an array of clients that are available') do
+
+    end
+  end
+
   describe('#delete') do
     it('will delete a client from the database') do
       client = Client.new(id: nil, first_name: 'Ian', last_name: 'MacDonald', stylist_id: nil)
