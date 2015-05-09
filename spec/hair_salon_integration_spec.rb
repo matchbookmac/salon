@@ -71,8 +71,6 @@ describe('the hair salon path', {:type => :feature}) do
       stylist.add_clients([client_1, client_2])
       visit("/stylists/#{stylist.id}")
       expect(page).to have_content('Joe\'s clients: Ian MacDonald Mattie Gregor')
-binding.pry
-save_and_open_page
       find(:css, "##{client_1.id}").set(true)
       click_on('Remove')
       expect(page).to have_content('Joe\'s clients: Mattie Gregor')
