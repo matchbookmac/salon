@@ -37,7 +37,7 @@ Install and run:
 > ruby app.rb
 ```
 
-### License ###
+### License
 Copyright  (C)  2015  Ian C. MacDonald
 
 This program is free software: you can redistribute it and/or modify

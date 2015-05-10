@@ -54,17 +54,6 @@ button.stretch {
     box-shadow: none;
 }
 
-.books-container ul li {
-  font-size: 20px;
-  text-align: center;
-  list-style-type: none;
-  margin-bottom: 5px;
-}
-
-input.form-control.half-width {
-  width: 50%;
-}
-
 .no-wrap {
   white-space: nowrap;
 }
