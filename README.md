@@ -57,10 +57,11 @@ Start the postgres server, open postgres, and create the databases needed.
 #### Schema
 
 List of relations
-|   Name   | Type  |
-|----------|-------|
-| clients  | table |
-| stylists | table |
+
+   Name   | Type  
+ ---------- | -------
+ clients  | table
+ stylists | table 
 
 clients
 id  | first_name | last_name | stylist_id
