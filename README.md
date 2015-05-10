@@ -37,6 +37,39 @@ Install and run:
 > ruby app.rb
 ```
 
+### Database Schema
+
+If unable to restore database from dump file, the schema for creating the database is below.
+
+Be sure Postgres is installed.
+
+Start the postgres server, open postgres, and create the databases needed.
+
+```console
+ > psql
+=# CREATE DATABASE hair_salon;
+=# \c hair_salon;
+=# CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar, stylist_id int);
+=# CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar, last_name varchar);
+=# CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
+```
+
+#### Schema
+
+List of relations
+   Name   | Type  
+----------+-------
+ clients  | table
+ stylists | table
+
+clients
+id  | first_name | last_name | stylist_id
+----+------------+-----------+------------
+
+stylists
+id  | first_name | last_name
+----+------------+-----------
+
 ### License
 Copyright  (C)  2015  Ian C. MacDonald
 
