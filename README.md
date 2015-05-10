@@ -58,17 +58,19 @@ Start the postgres server, open postgres, and create the databases needed.
 
 List of relations
 
-   Name   | Type  
+   Name     | Type  
  ---------- | -------
- clients  | table
- stylists | table 
+ clients    | table
+ stylists   | table
 
-clients
+clients table
+
 id  | first_name | last_name | stylist_id
 ----|------------|-----------|------------
 int | varchar    | varchar   | int
 
-stylists
+stylists table
+
 id  | first_name | last_name
 ----|------------|-----------
 int | varchar    | varchar
